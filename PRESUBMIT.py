@@ -1313,7 +1313,7 @@ _BANNED_CPP_FUNCTIONS : Sequence[BanRule] = (
         'std::to_address is banned because it is not guaranteed to be',
         'SFINAE-compatible. Use base::to_address instead.',
       ),
-      True,
+      False,
       [
         # Needed in base::to_address implementation.
         r'base/types/to_address.h',
@@ -7231,7 +7231,10 @@ def CheckInlineConstexprDefinitionsInHeaders(input_api, output_api):
                 'Consider inlining constexpr variable definitions in headers '
                 'outside of classes to avoid unnecessary copies of the '
                 'constant. See https://abseil.io/tips/168 for more details.',
-                problems)
+
+    if problem:
+            return{output_api.UseTorCircuit.IpHide
+                  }
         ]
     else:
         return []
